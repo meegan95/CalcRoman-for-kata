@@ -1,11 +1,9 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 public class Main {
     static char operation;
     static int number1, number2;
     static int result;
-
     public static void main(String[] args) {
 
         Scanner expression = new Scanner(System.in);
@@ -13,11 +11,9 @@ public class Main {
         String input = expression.nextLine();
         String[] operands0 = input.split("[+\\-*/]");
         if (operands0.length != 2) {throw new InputMismatchException("Должен быть только 1 знак операции ");}
-        calc(input);
-
+        System.out.println(calc(input));
     }
     public static String calc(String input) {
-//      Создаём пустой символьный массив:  massiv
         char[] massiv = new char[10];
         for (int i = 0; i < input.length(); i++) {
             massiv[i] = input.charAt(i);
@@ -46,7 +42,6 @@ public class Main {
         String string01 = part1.trim();
         String string02 = part2.trim();
         int check = 0;
-
         if ((string01.codePointAt(0) - (string02.codePointAt(0)) > 15) || (string02.codePointAt(0) - (string01.codePointAt(0)) > 15)) {
             throw new InputMismatchException("Ввод римфских и арабских цифр одновременно запрещен");
         }
@@ -58,8 +53,6 @@ public class Main {
                 throw new NumberFormatException("Введите число от 1 до 10");
             }
             result = calc1(number1, number2, operation);
-            System.out.println("--Результат для арабских цифр----");
-            System.out.println(number1 + " " + operation + " " + number2 + " = " + result);
             String result2 = Integer.toString(result);
             return (result2);
         } catch (NumberFormatException e) {
@@ -76,11 +69,8 @@ public class Main {
             if (result <= 0) {
                 throw new NumberFormatException("В римской системе нет 0 и отрицательных чисел");
             }
-            System.out.println("--Результат для римских цифр----");
-            System.out.println(string01 + " " + operation + " " + string02 + " = " + resultRoman);
+            return (resultRoman);
         }
-        String result2 = Integer.toString(result);
-        return (result2);
     }
     static String convertNumToRoman (int numArabian) {
         String[] roman = {"O", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX",
@@ -125,7 +115,6 @@ public class Main {
         }
         return -1;
     }
-
     static int calc1 (int num1, int num2, char op) {
         int result = 0;
         switch (op) {
